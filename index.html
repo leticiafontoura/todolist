@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do List</title>
+  </head>
+  <body>
+    <div class="form" data-js="form">
+      <form>
+        <label for="to-do">Tarefa: </label>
+        <input type="text" name="to-do" id="to-do" class="to-do" data-js="to-do">
+        <button type="submit" class="submit-btn" data-js="submit-btn">Add</button>
+      </form>
+    </div>
+    <div class="list" data-js="list">
+      <table>
+        <tbody class="body-list" data-js="body-list">
+
+        </tbody>
+      </table>
+    </div>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
