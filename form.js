@@ -31,8 +31,6 @@ function renderItems() {
     `)
     }
 
-
-
     const doneBtns = Array.from(document.querySelectorAll("[data-js='done-btn']"));
     const delBtns = Array.from(document.querySelectorAll("[data-js='del-btn']"));
     const listItem = Array.from(document.querySelectorAll("[data-js='list-item']"));
@@ -50,6 +48,9 @@ function renderItems() {
     for (let i = 0; i < delBtns.length; i++) {
         delBtns[i].addEventListener("click", (e) => {
             listRow[i].remove();
+            todoItems.splice(i, 1);
+            localStorage.setItem("items", JSON.stringify(todoItems));
+            renderItems();
         })
     }
 }
