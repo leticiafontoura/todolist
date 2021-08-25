@@ -10,3 +10,28 @@
 .linethrough {
   text-decoration:line-through;
 }
+
+.inputcell, .datecell {
+  border: 0px;
+}
+
+.active {
+  border: 1px solid black;
+}
+
+.active.inputcell:focus, .active.datecell:focus {
+
+  outline: -webkit-focus-ring-color auto 1px
+}
+
+.inputcell:focus, .datecell:focus {
+  outline: none
+}
+
+.date-item {
+  background-color: #edd2cb;
+}
+
+.datecell {
+  background-color: #edd2cb;
+}
