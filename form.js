@@ -1,8 +1,7 @@
 const form = document.querySelector("[data-js='form']");
 const input = document.querySelector("[data-js='to-do']");
-const dateInput = document.querySelector("[data-js='date']")
-
-const divList = document.querySelector("[data-js='list']");
+const dateInput = document.querySelector("[data-js='date']");
+const timeInput = document.querySelector("[data-js='time']");
 const table = document.querySelector("table");
 
 function renderItems() {
@@ -21,10 +20,7 @@ function renderItems() {
     table.appendChild(tbody);
     console.log("body created");
     for (let i = 0; i < todoItems.length; i++) {
-        const formatDate = new Date(todoItems[i].id)
-        console.log(formatDate.getDate() + 1);
-        console.log(formatDate.getMonth() + 1);
-        console.log(formatDate.getFullYear());
+        const formatDate = new Date(todoItems[i].id);
         tbody.insertAdjacentHTML("beforeend", `
     <tr class="list-row" data-js="list-row">
        
@@ -90,6 +86,11 @@ form.addEventListener("submit", (e) => {
     });
     localStorage.setItem("items", JSON.stringify(arr2));
     console.log("enviado");
+
+    input.value = "";
+    dateInput.value = "";
+    timeInput.value = "";
+    input.focus();
 
     renderItems();
 
