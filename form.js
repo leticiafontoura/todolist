@@ -1,15 +1,26 @@
 const form = document.querySelector("[data-js='form']");
 const input = document.querySelector("[data-js='to-do']");
-const list = document.querySelector("[data-js='body-list']");
-console.log(list);
+
+const divList = document.querySelector("[data-js='list']");
+const table = document.querySelector("table");
 
 function renderItems() {
 
     const todoItems = JSON.parse(localStorage.getItem("items"));
     console.log(todoItems);
 
+    const oldTbody = document.querySelector("tbody");
+
+    if (oldTbody) {
+        oldTbody.remove();
+        console.log("body removed")
+    }
+
+    const tbody = document.createElement("tbody");
+    table.appendChild(tbody);
+    console.log("body created");
     for (let i = 0; i < todoItems.length; i++) {
-        list.insertAdjacentHTML("beforeend", `
+        tbody.insertAdjacentHTML("beforeend", `
     <tr class="list-row" data-js="list-row">
         <td class="list-item" data-js="list-item">${todoItems[i].item}</td>
         <td>
@@ -43,7 +54,7 @@ function renderItems() {
     }
 }
 
-const putItems = JSON.parse(localStorage.getItem("items")) ? ? [];
+const putItems = JSON.parse(localStorage.getItem("items")) ?? [];
 console.log(putItems);
 
 form.addEventListener("submit", (e) => {
@@ -70,8 +81,6 @@ form.addEventListener("submit", (e) => {
         item: input.value
     });
     localStorage.setItem("items", JSON.stringify(arr2));
-    console.log(arr2);
-
     console.log("enviado");
 
     renderItems();
