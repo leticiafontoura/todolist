@@ -1,5 +1,6 @@
 const form = document.querySelector("[data-js='form']");
 const input = document.querySelector("[data-js='to-do']");
+const dateInput = document.querySelector("[data-js='date']")
 
 const divList = document.querySelector("[data-js='list']");
 const table = document.querySelector("table");
@@ -20,8 +21,14 @@ function renderItems() {
     table.appendChild(tbody);
     console.log("body created");
     for (let i = 0; i < todoItems.length; i++) {
+        const formatDate = new Date(todoItems[i].id)
+        console.log(formatDate.getDate() + 1);
+        console.log(formatDate.getMonth() + 1);
+        console.log(formatDate.getFullYear());
         tbody.insertAdjacentHTML("beforeend", `
     <tr class="list-row" data-js="list-row">
+       
+        <td class="list-item" data-js="list-item">Due date: ${formatDate.getDate() + 1}/${formatDate.getMonth() + 1}/${formatDate.getFullYear()}</td>
         <td class="list-item" data-js="list-item">${todoItems[i].item}</td>
         <td>
             <button class="done-btn" data-js="done-btn" value="done">done</button>
@@ -65,7 +72,7 @@ form.addEventListener("submit", (e) => {
 
     if (putItems.length === 0) {
         putItems.push({
-            id: new Date(),
+            id: date.value,
             item: input.value
         });
 
@@ -78,7 +85,7 @@ form.addEventListener("submit", (e) => {
 
     const arr2 = JSON.parse(localStorage.getItem("items"));
     arr2.push({
-        id: new Date(),
+        id: date.value,
         item: input.value
     });
     localStorage.setItem("items", JSON.stringify(arr2));
