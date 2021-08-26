@@ -1,37 +1,161 @@
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital@0;1&display=swap');
+
+
+* {
+  font-family: 'IBM Plex Sans', sans-serif;
+  color: #543c52;
+  /* -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 60px; */
+  margin: 0 auto;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+thead {
+  background-color: #dad873;
+  color: white;
+  text-align: left;
+}
+
+th, td {
+  padding: 10px;
 }
 
 .linethrough {
-  text-decoration:line-through;
+  background-position: left !important;
 }
 
-.inputcell, .datecell {
+.inputcell, .datecell, .inputcelltime {
   border: 0px;
+  background-color: transparent;
+  transition: 0.5s
 }
 
 .active {
-  border: 1px solid black;
 }
 
-.active.inputcell:focus, .active.datecell:focus {
+button {
+  background-color:transparent;
+  border: 0px;
+  font-size: 1.2rem;
+}
+
+.active.inputcell:focus, .active.datecell:focus, .active.inputcelltime:focus {
 
   outline: -webkit-focus-ring-color auto 1px
 }
 
-.inputcell:focus, .datecell:focus {
+.inputcell:focus, .datecell:focus, .inputcelltime:focus {
   outline: none
 }
 
-.date-item {
-  background-color: #edd2cb;
+.list-row {
+  background: linear-gradient(to left, #fff 50%, #58b368 50%) right;
+  transition: 0.5s ease-in-out;
+    background-size: 200%;
 }
 
-.datecell {
-  background-color: #edd2cb;
+.todo-item {
+  vertical-align: center;
+}
+
+.btns {
+  vertical-align: center;
+}
+
+.form {
+  width: 60%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+form {
+  text-align: center;
+}
+
+.fas, .far {
+  color: #808080;
+  transition: 0.4s;
+}
+
+.far.fa-circle:hover {
+  color: rgb(2, 210, 2);
+}
+
+.linethrough .fas {
+  color: #c9c9c9;
+}
+
+.datecell:hover, .inputcelltime:hover, .inputcell:hover {
+  color: #000;
+}
+
+.datecell::-webkit-calendar-picker-indicator {
+   margin-left: 0
+}
+
+/* .datecell::-webkit-datetime-edit {
+  background: salmon;
+} */
+
+.datecell::-webkit-datetime-edit-month-field:focus, .datecell::-webkit-datetime-edit-day-field:focus, .datecell::-webkit-datetime-edit-year-field:focus {
+  background: salmon;
+}
+
+.list-row.strikethrough .datecell::-webkit-datetime-edit-fields-wrapper, .list-row.strikethrough .inputcelltime::-webkit-datetime-edit-fields-wrapper, .list-row.strikethrough .inputcell {
+  text-decoration: line-through;
+}
+
+.inputcelltime::-webkit-datetime-edit-hour-field:focus, .inputcelltime::-webkit-datetime-edit-minute-field:focus {
+  background: salmon;
+}
+
+/* .fas.fa-circle {
+  color: rgb(2, 210, 2);
+} */
+
+.done-btn {
+  /* background-color: transparent;
+  border: 1px solid #808080;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%; */
+  /* transition: 2s ease-in; */
+}
+
+.done .fas {
+  animation: grow 0.5s ease-in-out;
+}
+
+@keyframes grow {
+  0% {
+    transform: scale(1);
+  }
+  10% {
+    transform: scale(0);
+  }
+  15% {
+    trasnform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+  
+}
+.done .fas{
+  color: seagreen
+}
+
+
+td {
+  width: 100px;
 }
