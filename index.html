@@ -1,26 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>To-Do List</title>
-    <script src="https://kit.fontawesome.com/a5f83d9f81.js" crossorigin="anonymous"></script>
-  </head>
-  <body>
-    <div class="form" data-js="form">
-      <form>
-        <input type="text" required name="to-do" id="to-do" class="to-do" data-js="to-do">
-        <input type="date" required name="date" id="date" class="date" data-js="date" format="dd/mm/yyyy">
-        <input type="time" required name="time" id="time" class="time" data-js="time">
-        <button type="submit" class="submit-btn" data-js="submit-btn">+</button>
-      </form>
-    </div>
-    <div class="list" data-js="list">
-      <table>
-        <tbody data-js='body-list'></tbody>
-      </table>
-    </div>
-    <script type="module" src="/main.js"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>To-Do List</title>
+  <script src="https://kit.fontawesome.com/a5f83d9f81.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div class="form" data-js="form">
+    <form id="form-id">
+      <p><input type="text" required name="to-do" id="to-do" class="to-do" data-js="to-do" placeholder="what?"></p>
+      <p><input type="date" required name="date" id="date" class="date" data-js="date" format="dd/mm/yyyy"></p>
+      <p><input type="time" required name="time" id="time" class="time" data-js="time"></p>
+      <p><button type="submit" class="submit-btn" data-js="submit-btn">+</button></p>
+    </form>
+  </div>
+  <div class="list" data-js="list">
+    <table>
+      <tbody data-js='body-list'></tbody>
+    </table>
+  </div>
+  <script type="module" src="/main.js"></script>
+</body>
+
 </html>

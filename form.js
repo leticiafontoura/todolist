@@ -39,18 +39,47 @@ function renderItems() {
     //     </td>
     // </tr>
     // `)
+
+
+    // tbody.insertAdjacentHTML("beforeend", `
+    // <tr class="list-row" data-js="list-row">
+       
+    //     <td label="When" class="date-item" data-js="date-item"><input class="datecell" type="date" readonly value="${formatDate.getFullYear()}-${formatDate.getMonth() + 1 < 10 ? "0" + (formatDate.getMonth() + 1).toString() : formatDate.getMonth() + 1}-${formatDate.getDate() + 1 < 10 ? "0" + (formatDate.getDate() + 1).toString() : formatDate.getDate() + 1}"> </br><input class="inputcelltime" type="time" readonly value="${todoItems[i].time}"></td>
+    //     <td label="What" class="todo-item" data-js="todo-item"><input class="inputcell" type="text" readonly value="${todoItems[i].item}"></td>
+    //     <td label="Action" class="btns">
+    //         <button class="done-btn" data-js="done-btn" value="done"><i class="fas fa-check"></i></button>
+    //         <button class="del-btn" data-js="del-btn" value="delete"><i class="fas fa-trash"></i></button>
+    //         <button class="save-btn" data-js="save-btn" value="save"><i class="fas fa-save"></i></button>
+    //     </td>
+    // </tr>
+    // `)
+
+    // tbody.insertAdjacentHTML("beforeend", `
+    // <tr class="list-row" data-js="list-row">
+       
+    //     <td label="When" class="date-item" data-js="date-item"><input class="datecell" type="date" readonly value="${formatDate.getFullYear()}-${formatDate.getMonth() + 1 < 10 ? "0" + (formatDate.getMonth() + 1).toString() : formatDate.getMonth() + 1}-${formatDate.getDate() + 1 < 10 ? "0" + (formatDate.getDate() + 1).toString() : formatDate.getDate() + 1}"> </br><input class="inputcelltime" type="time" readonly value="${todoItems[i].time}"></td>
+    //     <td label="What" class="todo-item" data-js="todo-item"><textarea class="inputcell" rows= "3" cols="30" readonly value="${todoItems[i].item}">${todoItems[i].item}</textarea></td>
+    //     <td label="Action" class="btns">
+    //         <button class="done-btn" data-js="done-btn" value="done"><i class="fas fa-check"></i></button>
+    //         <button class="del-btn" data-js="del-btn" value="delete"><i class="fas fa-trash"></i></button>
+    //         <button class="save-btn" data-js="save-btn" value="save"><i class="fas fa-save"></i></button>
+    //     </td>
+    // </tr>
+    // `)
+
     tbody.insertAdjacentHTML("beforeend", `
     <tr class="list-row" data-js="list-row">
        
-        <td class="date-item" data-js="date-item"><input class="datecell" type="date" readonly value="${formatDate.getFullYear()}-${formatDate.getMonth() + 1 < 10 ? "0" + (formatDate.getMonth() + 1).toString() : formatDate.getMonth() + 1}-${formatDate.getDate() + 1 < 10 ? "0" + (formatDate.getDate() + 1).toString() : formatDate.getDate() + 1}"> </br><input class="inputcelltime" type="time" readonly value="${todoItems[i].time}"></td>
-        <td class="todo-item" data-js="todo-item"><input class="inputcell" type="text" readonly value="${todoItems[i].item}"></td>
-        <td class="btns">
+        <td label="When" class="date-item" data-js="date-item"><input class="datecell" type="date" readonly value="${formatDate.getFullYear()}-${formatDate.getMonth() + 1 < 10 ? "0" + (formatDate.getMonth() + 1).toString() : formatDate.getMonth() + 1}-${formatDate.getDate() + 1 < 10 ? "0" + (formatDate.getDate() + 1).toString() : formatDate.getDate() + 1}"> </br><input class="inputcelltime" type="time" readonly value="${todoItems[i].time}"></td>
+        <td label="What" class="todo-item" data-js="todo-item"><div class="inputcell" readonly>${todoItems[i].item}</div></td>
+        <td label="Action" class="btns">
             <button class="done-btn" data-js="done-btn" value="done"><i class="fas fa-check"></i></button>
             <button class="del-btn" data-js="del-btn" value="delete"><i class="fas fa-trash"></i></button>
             <button class="save-btn" data-js="save-btn" value="save"><i class="fas fa-save"></i></button>
         </td>
     </tr>
     `)
+
         Array.from(document.querySelectorAll("[data-js='save-btn']"))[i].style.display = "none";
     }
 
@@ -65,6 +94,7 @@ function renderItems() {
     const dateCellInput = Array.from(document.querySelectorAll(".datecell"));
     const timeCellInput = Array.from(document.querySelectorAll(".inputcelltime"));
     const btnsCell = Array.from(document.querySelectorAll(".btns"));
+
 
 
     for (let i = 0; i < doneBtns.length; i++) {
@@ -98,14 +128,16 @@ function renderItems() {
         //EDIT DIRECTLY BY CLICKING ON THE FIELDS YOU WISH TO EDIT
         todoCellInput[i].onclick = () => {
             todoCellInput[i].removeAttribute("readonly");
-            dateCellInput[i].removeAttribute("readonly");
-            timeCellInput[i].removeAttribute("readonly");
+            // dateCellInput[i].removeAttribute("readonly");
+            // timeCellInput[i].removeAttribute("readonly");
             saveBtns[i].style.display = "inline-block";
             todoCellInput[i].classList.add("active");
             dateCellInput[i].classList.add("active");
             timeCellInput[i].classList.add("active");
+            todoCellInput[i].setAttribute("contenteditable", "true")
             doneBtns[i].remove();
             delBtns[i].remove();
+            todoCellInput[i].focus();
             if (saveBtns[i].style.display === "none") {
                 saveBtns[i].style.display = "inline-block"
             }
@@ -155,12 +187,18 @@ function renderItems() {
             todoItems[i] = {
                 id: dateCellInput[i].value,
                 time: timeCellInput[i].value,
-                item: todoCellInput[i].value, 
-            }
+                item: todoCellInput[i].textContent, 
+            };
+            todoCellInput[i].setAttribute("readonly", "");
+            dateCellInput[i].setAttribute("readonly", "");
+            timeCellInput[i].setAttribute("readonly", "");
             localStorage.setItem("items", JSON.stringify(todoItems));
             btnsCell[i].appendChild(doneBtns[i]);
             btnsCell[i].appendChild(delBtns[i]);
-            renderItems();
+            if (saveBtns[i].style.display === "inline-block") {
+                saveBtns[i].style.display = "none"
+            }
+            // renderItems();
         }
     }
 
@@ -169,7 +207,7 @@ function renderItems() {
             listRow[i].remove();
             todoItems.splice(i, 1);
             localStorage.setItem("items", JSON.stringify(todoItems));
-            renderItems();
+            // renderItems();
         })
     }
 }
