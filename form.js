@@ -81,6 +81,7 @@ function renderItems() {
     `)
 
         Array.from(document.querySelectorAll("[data-js='save-btn']"))[i].style.display = "none";
+
     }
 
     const doneBtns = Array.from(document.querySelectorAll("[data-js='done-btn']"));
@@ -99,12 +100,27 @@ function renderItems() {
 
     for (let i = 0; i < doneBtns.length; i++) {
         doneBtns[i].onclick = () => {
-            console.log(doneBtns[i].innerHTML)
-            console.log("botao" + (1 + i));
             doneBtns[i].classList.toggle("done");
-            listRow[i].classList.toggle("strikethrough")
-            // listRow[i].classList.contains("linethrough") ? listRow[i].classList.remove("linethrough") : listRow[i].classList.add("linethrough");
-            // doneBtns[i].innerHTML === '<i class="far fa-circle" aria-hidden="true"></i>' ? doneBtns[i].innerHTML = '<i class="fas fa-circle" aria-hidden="true"></i>' : doneBtns[i].innerHTML = '<i class="far fa-circle" aria-hidden="true"></i>';
+            listRow[i].classList.toggle("strikethrough");
+            
+            if (listRow[i].classList.contains("strikethrough")) {
+                todoItems[i] = {
+                    id: dateCellInput[i].value,
+                    time: timeCellInput[i].value,
+                    item: todoCellInput[i].textContent,
+                    done: true
+                };
+            } else {
+                todoItems[i] = {
+                    id: dateCellInput[i].value,
+                    time: timeCellInput[i].value,
+                    item: todoCellInput[i].textContent,
+                    done: false
+                };
+            }
+
+            localStorage.setItem("items", JSON.stringify(todoItems));
+            
         }
 
         //EDIT USING BUTTON TO EDIT
@@ -128,8 +144,6 @@ function renderItems() {
         //EDIT DIRECTLY BY CLICKING ON THE FIELDS YOU WISH TO EDIT
         todoCellInput[i].onclick = () => {
             todoCellInput[i].removeAttribute("readonly");
-            // dateCellInput[i].removeAttribute("readonly");
-            // timeCellInput[i].removeAttribute("readonly");
             saveBtns[i].style.display = "inline-block";
             todoCellInput[i].classList.add("active");
             dateCellInput[i].classList.add("active");
@@ -188,7 +202,11 @@ function renderItems() {
                 id: dateCellInput[i].value,
                 time: timeCellInput[i].value,
                 item: todoCellInput[i].textContent, 
+                done:  todoItems[i].done
             };
+            if (todoItems[i].done === true) {
+                listRow[i].classList.add("strikethrough")
+            }
             todoCellInput[i].setAttribute("readonly", "");
             dateCellInput[i].setAttribute("readonly", "");
             timeCellInput[i].setAttribute("readonly", "");
@@ -210,6 +228,13 @@ function renderItems() {
             // renderItems();
         })
     }
+    
+    for (let i = 0; i < todoItems.length; i++) {
+        if (todoItems[i].done === true) {
+            doneBtns[i].classList.toggle("done");
+            listRow[i].classList.toggle("strikethrough");
+        }
+    }
 }
 
 const putItems = JSON.parse(localStorage.getItem("items")) ?? [];
@@ -221,13 +246,11 @@ form.addEventListener("submit", (e) => {
         putItems.push({
             id: dateInput.value,
             time: timeInput.value,
-            item: input.value
+            item: input.value,
+            done: false
         });
 
-        console.log(putItems);
-
         localStorage.setItem("items", JSON.stringify(putItems));
-        console.log("saiu")
         return renderItems();
     }
 
@@ -235,10 +258,10 @@ form.addEventListener("submit", (e) => {
     arr2.push({
         id: dateInput.value,
         time: timeInput.value,
-        item: input.value
+        item: input.value,
+        done: false
     });
     localStorage.setItem("items", JSON.stringify(arr2));
-    console.log("enviado");
 
     input.value = "";
     dateInput.value = "";
