@@ -5,11 +5,6 @@
 * {
   font-family: 'IBM Plex Sans', sans-serif;
   color: #e6e3e3;
-  /* -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px; */
   margin: 0;
   box-sizing: border-box;
 }
@@ -28,9 +23,10 @@ input {
 
 th {
   color: #212020;
+  font-weight: 100;
 }
 
-input::placeholder {
+.to-do::placeholder, .date::placeholder, .time::placeholder {
   color: #e6e3e3;
 }
 
@@ -43,11 +39,11 @@ input::placeholder {
   background-image: url("./assets/time.svg");
 }
 
-.inputcelltime::-webkit-calendar-picker-indicator {
+.time-input::-webkit-calendar-picker-indicator {
   background-image: url("./assets/time.svg");
 }
 
-.datecell::-webkit-calendar-picker-indicator {
+.date-input::-webkit-calendar-picker-indicator {
   background-image: url("./assets/calendar--date.svg");
 }
 
@@ -70,14 +66,14 @@ th, td {
   background-position: left !important;
 }
 
-.inputcell, .datecell, .inputcelltime {
+.todo-item, .date-input, .time-input {
   border: 0px;
   background-color: transparent;
   transition: 0.2s;
 }
 
-.active {
-}
+/* .active {
+} */
 
 button {
   background-color:transparent;
@@ -85,16 +81,16 @@ button {
   font-size: 1.2rem;
 }
 
-.active.inputcell:focus, .active.datecell:focus, .active.inputcelltime:focus {
+/* .active.todo-item:focus, .active.date-input:focus, .active.time-input:focus {
 
-  outline: -webkit-focus-ring-color auto 1px
+  outline: -webkit-focus-ring-color auto 1px;
 }
 
-.inputcell:focus, .datecell:focus, .inputcelltime:focus {
+.todo-item:focus, .date-input:focus, .time-input:focus {
   outline: none
-}
+} */
 
-.todo-item {
+.todo-cell {
   vertical-align: center;
 }
 
@@ -122,40 +118,37 @@ form {
   transition: 0.4s;
 }
 
-.linethrough .fas {
-  color: #c9c9c9;
-}
-
-.inputcell {
- max-width: 100px;
+.todo-item {
+ min-width: 100px;
+ max-width: 200px;
  font-size: 13.333px;
  word-wrap: break-word;
  margin: 0;
  padding: 10px;
 }
 
-.date-item:hover, .inputcell:hover {
+.date-time-cell:hover, .todo-item:hover {
   color: #fff;
 }
 
-.datecell::-webkit-calendar-picker-indicator {
+.date-input::-webkit-calendar-picker-indicator {
    margin-left: 0
 }
 
-.datecell::-webkit-datetime-edit-month-field:focus, .datecell::-webkit-datetime-edit-day-field:focus, .datecell::-webkit-datetime-edit-year-field:focus, .date::-webkit-datetime-edit-month-field:focus, .date::-webkit-datetime-edit-day-field:focus, .date::-webkit-datetime-edit-year-field:focus {
+.date-input::-webkit-datetime-edit-month-field:focus, .date-input::-webkit-datetime-edit-day-field:focus, .date-input::-webkit-datetime-edit-year-field:focus, .date::-webkit-datetime-edit-month-field:focus, .date::-webkit-datetime-edit-day-field:focus, .date::-webkit-datetime-edit-year-field:focus {
   background: salmon;
 }
 
-.datecell::-webkit-datetime-edit-fields-wrapper, .inputcelltime::-webkit-datetime-edit-fields-wrapper, .inputcell {
+.date-input::-webkit-datetime-edit-fields-wrapper, .time-input::-webkit-datetime-edit-fields-wrapper, .todo-item {
   transition: 0.2s;
 }
 
-.list-row.strikethrough .datecell::-webkit-datetime-edit-fields-wrapper, .list-row.strikethrough .inputcelltime::-webkit-datetime-edit-fields-wrapper, .list-row.strikethrough .inputcell {
+.list-row.strikethrough .date-input::-webkit-datetime-edit-fields-wrapper, .list-row.strikethrough .time-input::-webkit-datetime-edit-fields-wrapper, .list-row.strikethrough .todo-item, .list-row.strikethrough .date-input, .list-row.strikethrough .time-input {
   text-decoration: line-through;
   color: rgb(184, 184, 184)
 }
 
-.inputcelltime::-webkit-datetime-edit-hour-field:focus, .time::-webkit-datetime-edit-hour-field:focus, .inputcelltime::-webkit-datetime-edit-minute-field:focus, .time::-webkit-datetime-edit-minute-field:focus {
+.time-input::-webkit-datetime-edit-hour-field:focus, .time::-webkit-datetime-edit-hour-field:focus, .time-input::-webkit-datetime-edit-minute-field:focus, .time::-webkit-datetime-edit-minute-field:focus {
   background: salmon;
 }
 
@@ -235,7 +228,8 @@ td {
     padding: 10px;
     border-radius: 0;
   }
-  .inputcell {
+  .todo-item {
+    min-width: 100px;
     max-width: 200px;
   }
 }

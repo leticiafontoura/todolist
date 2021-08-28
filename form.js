@@ -1,7 +1,7 @@
 const form = document.querySelector("[data-js='form']");
-const input = document.querySelector("[data-js='to-do']");
-const dateInput = document.querySelector("[data-js='date']");
-const timeInput = document.querySelector("[data-js='time']");
+const toDoFormInput = document.querySelector("[data-js='to-do']");
+const dateFormInput = document.querySelector("[data-js='date']");
+const timeFormInput = document.querySelector("[data-js='time']");
 const table = document.querySelector("table");
 
 function renderItems() {
@@ -24,55 +24,18 @@ function renderItems() {
     table.appendChild(thead);
     table.appendChild(tbody);
     for (let i = 0; i < todoItems.length; i++) {
-        const formatDate = new Date(todoItems[i].id);
+        const formatDate = new Date(todoItems[i].date);
         thead.innerHTML = `<th>When</th><th>What</th><th>Action</th>`
-    //     tbody.insertAdjacentHTML("beforeend", `
-    // <tr class="list-row" data-js="list-row">
-       
-    //     <td class="date-item" data-js="date-item"><input class="datecell" type="date" readonly value="${formatDate.getFullYear()}-${formatDate.getMonth() + 1 < 10 ? "0" + (formatDate.getMonth() + 1).toString() : formatDate.getMonth() + 1}-${formatDate.getDate() + 1 < 10 ? "0" + (formatDate.getDate() + 1).toString() : formatDate.getDate() + 1}"> </br><input class="inputcelltime" type="time" readonly value="${todoItems[i].time}"></td>
-    //     <td class="todo-item" data-js="todo-item"><input class="inputcell" type="text" readonly value="${todoItems[i].item}"></td>
-    //     <td class="btns">
-    //         <button class="done-btn" data-js="done-btn" value="done"><i class="fas fa-check"></i></button>
-    //         <button class="del-btn" data-js="del-btn" value="delete"><i class="fas fa-trash"></i></button>
-    //         <button class="edit-btn" data-js="edit-btn" value="edit"><i class="fas fa-pencil-alt"></i></button>
-    //         <button class="save-btn" data-js="save-btn" value="save"><i class="fas fa-save"></i></button>
-    //     </td>
-    // </tr>
-    // `)
-
-
-    // tbody.insertAdjacentHTML("beforeend", `
-    // <tr class="list-row" data-js="list-row">
-       
-    //     <td label="When" class="date-item" data-js="date-item"><input class="datecell" type="date" readonly value="${formatDate.getFullYear()}-${formatDate.getMonth() + 1 < 10 ? "0" + (formatDate.getMonth() + 1).toString() : formatDate.getMonth() + 1}-${formatDate.getDate() + 1 < 10 ? "0" + (formatDate.getDate() + 1).toString() : formatDate.getDate() + 1}"> </br><input class="inputcelltime" type="time" readonly value="${todoItems[i].time}"></td>
-    //     <td label="What" class="todo-item" data-js="todo-item"><input class="inputcell" type="text" readonly value="${todoItems[i].item}"></td>
-    //     <td label="Action" class="btns">
-    //         <button class="done-btn" data-js="done-btn" value="done"><i class="fas fa-check"></i></button>
-    //         <button class="del-btn" data-js="del-btn" value="delete"><i class="fas fa-trash"></i></button>
-    //         <button class="save-btn" data-js="save-btn" value="save"><i class="fas fa-save"></i></button>
-    //     </td>
-    // </tr>
-    // `)
-
-    // tbody.insertAdjacentHTML("beforeend", `
-    // <tr class="list-row" data-js="list-row">
-       
-    //     <td label="When" class="date-item" data-js="date-item"><input class="datecell" type="date" readonly value="${formatDate.getFullYear()}-${formatDate.getMonth() + 1 < 10 ? "0" + (formatDate.getMonth() + 1).toString() : formatDate.getMonth() + 1}-${formatDate.getDate() + 1 < 10 ? "0" + (formatDate.getDate() + 1).toString() : formatDate.getDate() + 1}"> </br><input class="inputcelltime" type="time" readonly value="${todoItems[i].time}"></td>
-    //     <td label="What" class="todo-item" data-js="todo-item"><textarea class="inputcell" rows= "3" cols="30" readonly value="${todoItems[i].item}">${todoItems[i].item}</textarea></td>
-    //     <td label="Action" class="btns">
-    //         <button class="done-btn" data-js="done-btn" value="done"><i class="fas fa-check"></i></button>
-    //         <button class="del-btn" data-js="del-btn" value="delete"><i class="fas fa-trash"></i></button>
-    //         <button class="save-btn" data-js="save-btn" value="save"><i class="fas fa-save"></i></button>
-    //     </td>
-    // </tr>
-    // `)
 
     tbody.insertAdjacentHTML("beforeend", `
     <tr class="list-row" data-js="list-row">
        
-        <td label="When" class="date-item" data-js="date-item"><input class="datecell" type="date" readonly value="${formatDate.getFullYear()}-${formatDate.getMonth() + 1 < 10 ? "0" + (formatDate.getMonth() + 1).toString() : formatDate.getMonth() + 1}-${formatDate.getDate() + 1 < 10 ? "0" + (formatDate.getDate() + 1).toString() : formatDate.getDate() + 1}"> </br><input class="inputcelltime" type="time" readonly value="${todoItems[i].time}"></td>
-        <td label="What" class="todo-item" data-js="todo-item"><div class="inputcell" readonly>${todoItems[i].item}</div></td>
-        <td label="Action" class="btns">
+        <td label="When" class="date-time-cell" data-js="date-time-cell">
+        <input class="date-input" data-js="date-input" type="date" readonly value="${formatDate.getFullYear()}-${formatDate.getMonth() + 1 < 10 ? "0" + (formatDate.getMonth() + 1).toString() : formatDate.getMonth() + 1}-${formatDate.getDate() + 1 < 10 ? "0" + (formatDate.getDate() + 1).toString() : formatDate.getDate() + 1}">
+        </br>
+        <input class="time-input" data-js="time-input" type="time" readonly value="${todoItems[i].time}"></td>
+        <td label="What" class="todo-cell" data-js="todo-cell"><div class="todo-item" data-js="todo-item" readonly>${todoItems[i].item}</div></td>
+        <td label="Action" class="btns" data-js="btns">
             <button class="done-btn" data-js="done-btn" value="done"><i class="fas fa-check"></i></button>
             <button class="del-btn" data-js="del-btn" value="delete"><i class="fas fa-trash"></i></button>
             <button class="save-btn" data-js="save-btn" value="save"><i class="fas fa-save"></i></button>
@@ -86,15 +49,12 @@ function renderItems() {
 
     const doneBtns = Array.from(document.querySelectorAll("[data-js='done-btn']"));
     const delBtns = Array.from(document.querySelectorAll("[data-js='del-btn']"));
-    // const editBtns = Array.from(document.querySelectorAll("[data-js='edit-btn']"));
     const saveBtns = Array.from(document.querySelectorAll("[data-js='save-btn']"));
-    // const dateCell = Array.from(document.querySelectorAll("[data-js='date-item']"));
-    // const todoCell = Array.from(document.querySelectorAll("[data-js='todo-item']"));
     const listRow = Array.from(document.querySelectorAll("[data-js='list-row']"));
-    const todoCellInput = Array.from(document.querySelectorAll(".inputcell"));
-    const dateCellInput = Array.from(document.querySelectorAll(".datecell"));
-    const timeCellInput = Array.from(document.querySelectorAll(".inputcelltime"));
-    const btnsCell = Array.from(document.querySelectorAll(".btns"));
+    const toDoItem = Array.from(document.querySelectorAll("[data-js='todo-item']"));
+    const tableDateInput = Array.from(document.querySelectorAll("[data-js='date-input']"));
+    const tableTimeInput = Array.from(document.querySelectorAll("[data-js='time-input']"));
+    const btnsCell = Array.from(document.querySelectorAll("[data-js='btns']"));
 
 
 
@@ -105,16 +65,16 @@ function renderItems() {
             
             if (listRow[i].classList.contains("strikethrough")) {
                 todoItems[i] = {
-                    id: dateCellInput[i].value,
-                    time: timeCellInput[i].value,
-                    item: todoCellInput[i].textContent,
+                    date: tableDateInput[i].value,
+                    time: tableTimeInput[i].value,
+                    item: toDoItem[i].textContent,
                     done: true
                 };
             } else {
                 todoItems[i] = {
-                    id: dateCellInput[i].value,
-                    time: timeCellInput[i].value,
-                    item: todoCellInput[i].textContent,
+                    date: tableDateInput[i].value,
+                    time: tableTimeInput[i].value,
+                    item: toDoItem[i].textContent,
                     done: false
                 };
             }
@@ -123,35 +83,15 @@ function renderItems() {
             
         }
 
-        //EDIT USING BUTTON TO EDIT
-
-        // editBtns[i].onclick = () => {
-        //     todoCellInput[i].removeAttribute("readonly");
-        //     dateCellInput[i].removeAttribute("readonly");
-        //     timeCellInput[i].removeAttribute("readonly");
-        //     saveBtns[i].style.display = "inline-block";
-        //     todoCellInput[i].classList.add("active");
-        //     dateCellInput[i].classList.add("active");
-        //     timeCellInput[i].classList.add("active");
-        //     todoCellInput[i].focus();
-        //     doneBtns[i].remove();
-        //     delBtns[i].remove();
-        //     if (saveBtns[i].style.display === "none") {
-        //         saveBtns[i].style.display = "inline-block"
-        //     }
-        // }
-        
+    
         //EDIT DIRECTLY BY CLICKING ON THE FIELDS YOU WISH TO EDIT
-        todoCellInput[i].onclick = () => {
-            todoCellInput[i].removeAttribute("readonly");
+        toDoItem[i].onclick = () => {
+            toDoItem[i].removeAttribute("readonly");
             saveBtns[i].style.display = "inline-block";
-            todoCellInput[i].classList.add("active");
-            dateCellInput[i].classList.add("active");
-            timeCellInput[i].classList.add("active");
-            todoCellInput[i].setAttribute("contenteditable", "true")
+            toDoItem[i].setAttribute("contenteditable", "true")
             doneBtns[i].remove();
             delBtns[i].remove();
-            todoCellInput[i].focus();
+            toDoItem[i].focus();
             if (saveBtns[i].style.display === "none") {
                 saveBtns[i].style.display = "inline-block"
             }
@@ -160,14 +100,11 @@ function renderItems() {
             }
         }
 
-        dateCellInput[i].onclick = () => {
-            todoCellInput[i].removeAttribute("readonly");
-            dateCellInput[i].removeAttribute("readonly");
-            timeCellInput[i].removeAttribute("readonly");
+        tableDateInput[i].onclick = () => {
+            toDoItem[i].removeAttribute("readonly");
+            tableDateInput[i].removeAttribute("readonly");
+            tableTimeInput[i].removeAttribute("readonly");
             saveBtns[i].style.display = "inline-block";
-            todoCellInput[i].classList.add("active");
-            dateCellInput[i].classList.add("active");
-            timeCellInput[i].classList.add("active");
             doneBtns[i].remove();
             delBtns[i].remove();
             if (saveBtns[i].style.display === "none") {
@@ -178,14 +115,11 @@ function renderItems() {
             }
         }
 
-        timeCellInput[i].onclick = () => {
-            todoCellInput[i].removeAttribute("readonly");
-            dateCellInput[i].removeAttribute("readonly");
-            timeCellInput[i].removeAttribute("readonly");
+        tableTimeInput[i].onclick = () => {
+            toDoItem[i].removeAttribute("readonly");
+            tableDateInput[i].removeAttribute("readonly");
+            tableTimeInput[i].removeAttribute("readonly");
             saveBtns[i].style.display = "inline-block";
-            todoCellInput[i].classList.add("active");
-            dateCellInput[i].classList.add("active");
-            timeCellInput[i].classList.add("active");
             doneBtns[i].remove();
             delBtns[i].remove();
             if (saveBtns[i].style.display === "none") {
@@ -197,35 +131,33 @@ function renderItems() {
         }
 
         saveBtns[i].onclick = () => {
-            todoCellInput[i].readOnly = true;
+            toDoItem[i].readOnly = true;
             todoItems[i] = {
-                id: dateCellInput[i].value,
-                time: timeCellInput[i].value,
-                item: todoCellInput[i].textContent, 
+                date: tableDateInput[i].value,
+                time: tableTimeInput[i].value,
+                item: toDoItem[i].textContent, 
                 done:  todoItems[i].done
             };
             if (todoItems[i].done === true) {
                 listRow[i].classList.add("strikethrough")
             }
-            todoCellInput[i].setAttribute("readonly", "");
-            dateCellInput[i].setAttribute("readonly", "");
-            timeCellInput[i].setAttribute("readonly", "");
+            toDoItem[i].setAttribute("readonly", "");
+            tableDateInput[i].setAttribute("readonly", "");
+            tableTimeInput[i].setAttribute("readonly", "");
             localStorage.setItem("items", JSON.stringify(todoItems));
             btnsCell[i].appendChild(doneBtns[i]);
             btnsCell[i].appendChild(delBtns[i]);
             if (saveBtns[i].style.display === "inline-block") {
                 saveBtns[i].style.display = "none"
             }
-            // renderItems();
         }
     }
 
     for (let i = 0; i < delBtns.length; i++) {
-        delBtns[i].addEventListener("click", (e) => {
+        delBtns[i].addEventListener("click", () => {
             listRow[i].remove();
             todoItems.splice(i, 1);
             localStorage.setItem("items", JSON.stringify(todoItems));
-            // renderItems();
         })
     }
     
@@ -237,36 +169,36 @@ function renderItems() {
     }
 }
 
-const putItems = JSON.parse(localStorage.getItem("items")) ?? [];
+const initialDataObj = JSON.parse(localStorage.getItem("items")) ?? [];
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    if (putItems.length === 0) {
-        putItems.push({
-            id: dateInput.value,
-            time: timeInput.value,
-            item: input.value,
+    if (initialDataObj.length === 0) {
+        initialDataObj.push({
+            date: dateFormInput.value,
+            time: timeFormInput.value,
+            item: toDoFormInput.value,
             done: false
         });
 
-        localStorage.setItem("items", JSON.stringify(putItems));
+        localStorage.setItem("items", JSON.stringify(initialDataObj));
         return renderItems();
     }
 
-    const arr2 = JSON.parse(localStorage.getItem("items"));
-    arr2.push({
-        id: dateInput.value,
-        time: timeInput.value,
-        item: input.value,
+    const currentDataObj = JSON.parse(localStorage.getItem("items"));
+    currentDataObj.push({
+        date: dateFormInput.value,
+        time: timeFormInput.value,
+        item: toDoFormInput.value,
         done: false
     });
-    localStorage.setItem("items", JSON.stringify(arr2));
+    localStorage.setItem("items", JSON.stringify(currentDataObj));
 
-    input.value = "";
-    dateInput.value = "";
-    timeInput.value = "";
-    input.focus();
+    toDoFormInput.value = "";
+    dateFormInput.value = "";
+    timeFormInput.value = "";
+    toDoFormInput.focus();
 
     renderItems();
 
