@@ -15,28 +15,58 @@ body, html {
   background-color: #212020;
 }
 
+/* global content */
+
 input {
   border-width: 0 0 1px 0;
   margin: 10px;
   background-color: transparent;
 }
 
+button {
+  background-color:transparent;
+  border: 0px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.date-input::-webkit-datetime-edit-month-field:focus, .date-input::-webkit-datetime-edit-day-field:focus, .date-input::-webkit-datetime-edit-year-field:focus, .date::-webkit-datetime-edit-month-field:focus, .date::-webkit-datetime-edit-day-field:focus, .date::-webkit-datetime-edit-year-field:focus {
+  background: salmon;
+}
+
+.time-input::-webkit-datetime-edit-hour-field:focus, .time::-webkit-datetime-edit-hour-field:focus, .time-input::-webkit-datetime-edit-minute-field:focus, .time::-webkit-datetime-edit-minute-field:focus {
+  background: salmon;
+}
+
+/* table content */
+
+table {
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
 th {
   color: #212020;
   font-weight: 100;
+  padding: 10px;
 }
 
-.to-do::placeholder, .date::placeholder, .time::placeholder {
-  color: #e6e3e3;
+td {
+  width: auto;
+  padding: 10px;
 }
 
-.date::-webkit-calendar-picker-indicator {
-  background-image: url("./assets/calendar--date.svg");
-  
+thead {
+  background-color: #dad873;
+  color: white;
+  text-align: left;
+  cursor: default;
 }
 
-.time::-webkit-calendar-picker-indicator {
-  background-image: url("./assets/time.svg");
+.todo-item, .date-input, .time-input {
+  border: 0px;
+  background-color: transparent;
+  transition: 0.2s;
 }
 
 .time-input::-webkit-calendar-picker-indicator {
@@ -46,49 +76,6 @@ th {
 .date-input::-webkit-calendar-picker-indicator {
   background-image: url("./assets/calendar--date.svg");
 }
-
-table {
-  border-collapse: collapse;
-  margin: 0 auto;
-}
-
-thead {
-  background-color: #dad873;
-  color: white;
-  text-align: left;
-}
-
-th, td {
-  padding: 10px;
-}
-
-.linethrough {
-  background-position: left !important;
-}
-
-.todo-item, .date-input, .time-input {
-  border: 0px;
-  background-color: transparent;
-  transition: 0.2s;
-}
-
-/* .active {
-} */
-
-button {
-  background-color:transparent;
-  border: 0px;
-  font-size: 1.2rem;
-}
-
-/* .active.todo-item:focus, .active.date-input:focus, .active.time-input:focus {
-
-  outline: -webkit-focus-ring-color auto 1px;
-}
-
-.todo-item:focus, .date-input:focus, .time-input:focus {
-  outline: none
-} */
 
 .todo-cell {
   vertical-align: center;
@@ -102,29 +89,18 @@ button {
   width: 100%;
 }
 
-
-.form {
-  width: 100%;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-form {
-  text-align: center;
-}
-
 .fas, .far {
   color: #989797;
   transition: 0.4s;
 }
 
 .todo-item {
- min-width: 100px;
- max-width: 200px;
- font-size: 13.333px;
- word-wrap: break-word;
- margin: 0;
- padding: 10px;
+  min-width: 100px;
+  max-width: 200px;
+  font-size: 13.333px;
+  word-wrap: break-word;
+  margin: 0;
+  padding: 10px;
 }
 
 .date-time-cell:hover, .todo-item:hover {
@@ -135,8 +111,9 @@ form {
    margin-left: 0
 }
 
-.date-input::-webkit-datetime-edit-month-field:focus, .date-input::-webkit-datetime-edit-day-field:focus, .date-input::-webkit-datetime-edit-year-field:focus, .date::-webkit-datetime-edit-month-field:focus, .date::-webkit-datetime-edit-day-field:focus, .date::-webkit-datetime-edit-year-field:focus {
-  background: salmon;
+.done .fas {
+  color: #2e8b57;
+  animation: check 0.5s ease-in-out;
 }
 
 .date-input::-webkit-datetime-edit-fields-wrapper, .time-input::-webkit-datetime-edit-fields-wrapper, .todo-item {
@@ -148,15 +125,33 @@ form {
   color: rgb(184, 184, 184)
 }
 
-.time-input::-webkit-datetime-edit-hour-field:focus, .time::-webkit-datetime-edit-hour-field:focus, .time-input::-webkit-datetime-edit-minute-field:focus, .time::-webkit-datetime-edit-minute-field:focus {
-  background: salmon;
+/* form content */
+
+.to-do::placeholder, .date::placeholder, .time::placeholder {
+  color: #e6e3e3;
 }
 
-.datetime-input-edit-wrapper:focus {
-  background-color: salmon !important;
+.date::-webkit-calendar-picker-indicator {
+  background-image: url("./assets/calendar--date.svg");
 }
 
-@keyframes grow {
+.time::-webkit-calendar-picker-indicator {
+  background-image: url("./assets/time.svg");
+}
+
+.form {
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+form {
+  text-align: center;
+}
+
+/* check button animation */
+
+@keyframes check {
   0% {
     transform: scale(1);
   }
@@ -174,14 +169,8 @@ form {
   }
   
 }
-.done .fas{
-  color: #2e8b57;
-  animation: grow 0.5s ease-in-out;
-}
 
-td {
-  width: auto;
-}
+/* mobile settings */
 
 @media (max-width: 565px) {
   thead {
