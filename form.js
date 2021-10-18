@@ -3,6 +3,7 @@ const toDoFormInput = document.querySelector("[data-js='to-do']");
 const dateFormInput = document.querySelector("[data-js='date']");
 const timeFormInput = document.querySelector("[data-js='time']");
 const table = document.querySelector("table");
+const body = document.querySelector("body");
 
 function renderItems() {
 
@@ -90,6 +91,7 @@ function renderItems() {
             saveBtns[i].style.display = "inline-block";
             toDoItem[i].setAttribute("contenteditable", "true")
             doneBtns[i].remove();
+            console.log("clicou")
             delBtns[i].remove();
             toDoItem[i].focus();
             if (saveBtns[i].style.display === "none") {
@@ -145,12 +147,60 @@ function renderItems() {
             tableDateInput[i].setAttribute("readonly", "");
             tableTimeInput[i].setAttribute("readonly", "");
             localStorage.setItem("items", JSON.stringify(todoItems));
+            console.log("oi")
             btnsCell[i].appendChild(doneBtns[i]);
             btnsCell[i].appendChild(delBtns[i]);
             if (saveBtns[i].style.display === "inline-block") {
                 saveBtns[i].style.display = "none"
             }
         }
+
+            // function saveItems () {
+            //     toDoItem[i].readOnly = true;
+            //     todoItems[i] = {
+            //         date: tableDateInput[i].value,
+            //         time: tableTimeInput[i].value,
+            //         item: toDoItem[i].textContent, 
+            //         done:  todoItems[i].done
+            //     };
+            //     if (todoItems[i].done === true) {
+            //         listRow[i].classList.add("strikethrough")
+            //     }
+            //     toDoItem[i].setAttribute("readonly", "");
+            //     tableDateInput[i].setAttribute("readonly", "");
+            //     tableTimeInput[i].setAttribute("readonly", "");
+            //     localStorage.setItem("items", JSON.stringify(todoItems));
+            //     btnsCell[i].appendChild(doneBtns[i]);
+            //     btnsCell[i].appendChild(delBtns[i]);
+                
+            //     if (saveBtns[i].style.display === "inline-block") {
+            //         saveBtns[i].style.display = "none"
+            //     }
+                
+            // }
+
+        window.addEventListener("click", () => {
+            toDoItem[i].readOnly = true;
+            todoItems[i] = {
+                date: tableDateInput[i].value,
+                time: tableTimeInput[i].value,
+                item: toDoItem[i].textContent, 
+                done:  todoItems[i].done
+            };
+            if (todoItems[i].done === true) {
+                listRow[i].classList.add("strikethrough")
+            }
+            toDoItem[i].setAttribute("readonly", "");
+            tableDateInput[i].setAttribute("readonly", "");
+            tableTimeInput[i].setAttribute("readonly", "");
+            localStorage.setItem("items", JSON.stringify(todoItems));
+            // btnsCell[i].appendChild(doneBtns[i]);
+            // btnsCell[i].appendChild(delBtns[i]);
+            
+            // if (saveBtns[i].style.display === "inline-block") {
+            //     saveBtns[i].style.display = "none"
+            // }
+        })
     }
 
     for (let i = 0; i < delBtns.length; i++) {
@@ -168,6 +218,7 @@ function renderItems() {
         }
     }
 }
+
 
 const initialDataObj = JSON.parse(localStorage.getItem("items")) ?? [];
 
